@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Plánovač akcí</title>
+            <script src="https://cdn.tailwindcss.com"></script>
+        </head>
+        <body class="antialiased bg-slate-200 text-slate-700 mx-2">
+            <div class="max-w-lg mx-auto my-10 bg-white p-8 rounded-xl shadow shadow-slate-300">
+                <div class="flex flex-row justify-between items-center">
+                    <div>
+                        <h1 class="text-3xl font-medium">Přidat Akci</h1>
+                    </div>
+                </div>
+                <div id="form" class="my-5">
+                        <form action="/" method="post">
+                            <div class="relative w-full">
+                                <input type="date" name="task_date" id="task_date" class="mb-2 bg-gray-50 border border-slate-300 text-slate-900 text-sm rounded-lg block w-full p-2.5" required>
+                                <input type="text" name="task_description" id="task_description" class="mb-2 bg-gray-50 border border-slate-300 text-slate-900 text-sm rounded-lg block w-full p-2.5" placeholder="Zápočet NOSQL" required>
+                                <button class="text-slate-900 font-bold p-2.5 bg-gray-50 border border-slate-300 text-slate-900 rounded w-full" name="add_task">Přidat Akci</button>
+                            </div>
+                        </form>
+                </div>
+
+                <div class="flex flex-row justify-between items-center">
+                    <div>
+                        <h1 class="text-3xl font-medium">Seznam Akcí</h1>
+                    </div>
+                </div>
+
+                <div id="tasks" class="my-5">
+                    {% for task in tasks %}
+                        {% with task=task%}
+                            {% include 'task.html' %}
+                        {% endwith %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="fixed bottom-10 right-10">
+                <form action="/logout" method="post" id="logoutForm">
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-xl p-4 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8">
+                            <path fill-rule="evenodd" d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6ZM5.78 8.47a.75.75 0 0 0-1.06 0l-3 3a.75.75 0 0 0 0 1.06l3 3a.75.75 0 0 0 1.06-1.06l-1.72-1.72H15a.75.75 0 0 0 0-1.5H4.06l1.72-1.72a.75.75 0 0 0 0-1.06Z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </body>
+        </html>
